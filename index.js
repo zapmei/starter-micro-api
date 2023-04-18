@@ -14,16 +14,28 @@ http.createServer(function (original_request, final_response) {
 		    'token': q.token,
 		    'cnpj': q.cnpj,
 		    'periodos': q.periodos
-		}
+		};
 	}
 	else if (q.servico === "parcelas") {
 		url_req = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples/mei/eg';
 		form = {
 			'token': q.token,
-		    	'cnpj': q.cnpj,
+			'cnpj': q.cnpj,
 		   	'cpf': q.cpf,
 			'codigo_acesso': q.chave_acesso,		   
-		}
+		};
+	}
+	else if (q.servico === "declaracaoanualmei") {
+		url_req = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simei-dasn';
+		form = {
+			'token': q.token,
+			'cnpj': q.cnpj,
+		   	'tipo_declaracao': q.tipo_declaracao,
+			'ano_calendario': q.ano_calendario,	
+			'receita_bruta_comercio': q.receita_bruta_comercio,
+			'receita_bruta_servicos': q.receita_bruta_servicos,
+			'possui_empregado': q.possui_empregado	   
+		};
 	}
 	
 	var request = require('request');
