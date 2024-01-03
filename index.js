@@ -37,6 +37,13 @@ http.createServer(function (original_request, final_response) {
 			'possui_empregado': q.possui_empregado	   
 		};
 	}
+	else if (q.servico === "receitafederalsimplesnacional") {
+		url_req = 'https://api.infosimples.com/api/v2/consultas/receita-federal/simples';
+		form = {
+			'token': q.token,
+			'cnpj': q.cnpj
+		};
+	}
 	
 	var request = require('request');
 	var options = {
